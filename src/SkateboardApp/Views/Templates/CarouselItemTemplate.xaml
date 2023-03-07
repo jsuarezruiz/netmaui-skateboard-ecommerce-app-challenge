@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="SkateboardApp.Views.Templates.CarouselItemTemplate">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="CarouselItemContainerStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 48" />
+                <Setter Property="BackgroundColor" Value="#1A1F39" />
+                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="Stroke" Value="#353C57" />
+                <Setter Property="Margin" Value="24, 100" />
+            </Style>
+            
+            <Style x:Key="BrandingContainerStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 0, 0, 48, 0" />
+                <Setter Property="BackgroundColor" Value="#EEFF38" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="HeightRequest" Value="120" />
+                <Setter Property="WidthRequest" Value="120" />
+                <Setter Property="HorizontalOptions" Value="End" />
+            </Style>
+
+            <Style x:Key="BrandingImageStyle" TargetType="Image">
+                <Setter Property="Margin" Value="28" />
+            </Style>
+            
+            <Style x:Key="ProductImageStyle" TargetType="Image">
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="24, 0, 0, 80" />
+            </Style>
+            
+            <Style x:Key="ProductNameStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="FontFamily" Value="MesaGrande" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+                <Setter Property="MaxLines" Value="3" />
+                <Setter Property="Margin" Value="12" />
+            </Style>
+            
+            <Style x:Key="ProductPriceStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#CBCCD5" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Margin" Value="12" />
+            </Style>
+            
+            <Style x:Key="BuyButtonStyle" TargetType="Button">
+                <Setter Property="FontFamily" Value="MesaGrande" />
+                <Setter Property="BackgroundColor" Value="#3DD3FE" />
+                <Setter Property="CornerRadius" Value="24" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="24, 12" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid>
+        <Border
+            Style="{StaticResource CarouselItemContainerStyle}">
+            <Grid
+                ColumnDefinitions="*, *"
+                RowSpacing="0"
+                RowDefinitions="Auto, *, Auto, *">
+                <Border
+                    Grid.Column="1"
+                    Style="{StaticResource BrandingContainerStyle}">
+                    <Image 
+                        Source="adidas_logo.png"
+                        Style="{StaticResource BrandingImageStyle}"/>
+                </Border>
+                <Label
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Text="{Binding ProductName}"
+                    Style="{StaticResource ProductNameStyle}"/>
+                <Label
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Text="{Binding Path=UnitPrice, StringFormat='USD {0}'}"
+                    Style="{StaticResource ProductPriceStyle}"/>
+                <Grid  
+                    Grid.Column="1"
+                    Grid.Row="3">
+                    <Button 
+                        Text="BUY NOW"
+                        Style="{StaticResource BuyButtonStyle}"/>
+                </Grid>
+            </Grid>
+        </Border>
+        <Image
+            Source="{Binding ProductImage}"
+            Style="{StaticResource ProductImageStyle}"/>
+    </Grid>
+</ContentView>

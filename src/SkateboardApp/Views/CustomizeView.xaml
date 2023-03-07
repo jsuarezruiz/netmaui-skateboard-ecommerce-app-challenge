@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="SkateboardApp.Views.CustomizeView"
+    xmlns:templates="clr-namespace:SkateboardApp.Views.Templates"
+    Shell.NavBarIsVisible="False"
+    Background="{StaticResource PageBackgroundColor}"
+    Title="Customize Skateboard">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="HeaderContainerStyle" TargetType="Label">
+                <Setter Property="Margin" Value="24" />
+            </Style>
+            
+            <Style x:Key="TitleTextStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="MesaGrande" />
+                <Setter Property="FontSize" Value="32" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="InfoTextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="24, 12, 24, 0" />
+            </Style>
+
+            <Style x:Key="CustomizeCarouselStyle" TargetType="CarouselView">
+                <Setter Property="Loop" Value="True" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid
+        RowDefinitions="Auto, *">
+        <Grid
+            RowDefinitions="Auto, *"
+            Style="{StaticResource HeaderContainerStyle}">
+            <Label 
+                Text="Customize Skateboard"
+                Style="{StaticResource TitleTextStyle}"/>
+            <Label
+                Grid.Row="1"
+                Text="Design a custom skateboard and make it complete with the best components."
+                Style="{StaticResource InfoTextStyle}"/>
+        </Grid>
+        <CarouselView
+            Grid.Row="1"
+            ItemsSource="{Binding Basket}"
+            Style="{StaticResource CustomizeCarouselStyle}">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <templates:CarouselItemTemplate />
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+    </Grid>
+</ContentPage>

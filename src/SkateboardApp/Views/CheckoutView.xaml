@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="SkateboardApp.Views.CheckoutView"
+    xmlns:templates="clr-namespace:SkateboardApp.Views.Templates"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource PageBackgroundColor}"
+    Title="Checkout">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="CheckoutButtonBackgroundColor">#3DD3FE</Color>
+            <Color x:Key="NavigationButtonBackgroundColor">#30364D</Color>
+            <Color x:Key="NavigationButtonStroke">#535872</Color>
+            
+            <Style x:Key="NavigationButtonStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="Ellipse" />
+                <Setter Property="BackgroundColor" Value="{StaticResource NavigationButtonBackgroundColor}" />
+                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="Stroke" Value="{StaticResource NavigationButtonStroke}" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="WidthRequest" Value="40" />
+                <Setter Property="Margin" Value="12, 0" />
+            </Style>
+            
+            <Style x:Key="NavigationButtonIconStyle" TargetType="Image">
+                <Setter Property="Margin" Value="6" /> </Style>
+           
+            <Style x:Key="TitleTextStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="MesaGrande" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0, 24" />
+            </Style>
+
+            <Style x:Key="BasketItemsStyle" TargetType="CollectionView">
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+            
+            <Style x:Key="CheckoutButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource CheckoutButtonBackgroundColor}" />
+                <Setter Property="CornerRadius" Value="0" />
+                <Setter Property="FontFamily" Value="MesaGrande" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="HeightRequest" Value="72" />
+            </Style>
+       
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid
+        RowDefinitions="Auto, *, Auto">
+        <!-- NAVIGATION -->
+        <Grid
+            ColumnDefinitions="Auto, *, Auto">
+            <Border
+                Style="{StaticResource NavigationButtonStyle}">
+                <Image 
+                    Source="back_icon.png"
+                    Style="{StaticResource NavigationButtonIconStyle}"/>
+            </Border>
+            <Label 
+                Grid.Column="1"
+                Text="Cart"
+                Style="{StaticResource TitleTextStyle}"/>
+            <Border
+                Grid.Column="2"
+                Style="{StaticResource NavigationButtonStyle}">
+                <Image 
+                    Source="basket_icon.png"
+                    Style="{StaticResource NavigationButtonIconStyle}"/>
+            </Border>
+        </Grid>
+        <!-- CART ITEMS -->
+        <CollectionView
+            Grid.Row="1"
+            ItemsSource="{Binding Basket}"
+            SelectionMode="Single"
+            Style="{StaticResource BasketItemsStyle}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <templates:BasketItemTemplate />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <!-- CHECKOUT -->
+        <Button 
+            Grid.Row="2"
+            Text="CHECKOUT"
+            Style="{StaticResource CheckoutButtonStyle}"/>
+    </Grid>
+</ContentPage>

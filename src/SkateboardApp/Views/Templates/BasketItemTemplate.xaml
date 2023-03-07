@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="SkateboardApp.Views.Templates.BasketItemTemplate"
+    xmlns:converters="clr-namespace:SkateboardApp.Converters"
+    xmlns:controls="clr-namespace:SkateboardApp.Controls"
+    xmlns:viewmodels="clr-namespace:SkateboardApp.ViewModels">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <converters:ProductIdToRotationConverter x:Key="ProductIdToRotationConverter" />
+
+            <Color x:Key="BasketItemBackgroundColor">#1A1F39</Color>
+            <Color x:Key="BasketItemStroke">#333851</Color>
+
+            <Style x:Key="BasketItemContainerStyle" TargetType="Border">
+                <Setter Property="BackgroundColor" Value="{StaticResource BasketItemBackgroundColor}" />
+                <Setter Property="StrokeShape" Value="RoundRectangle 48" />
+                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="Stroke" Value="{StaticResource BasketItemStroke}" />
+                <Setter Property="HeightRequest" Value="130" />
+                <Setter Property="Padding" Value="12" />
+            </Style>
+
+            <Style x:Key="ProductImageStyle" TargetType="Image">
+                <Setter Property="Aspect" Value="AspectFit" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HeightRequest" Value="200" />
+                <Setter Property="Margin" Value="0, 0, 0, 0" />
+            </Style>
+
+            <Style x:Key="BasketItemImageBackgroundStyle" TargetType="Ellipse">
+                <Setter Property="HeightRequest" Value="100" />
+                <Setter Property="WidthRequest" Value="100" />
+            </Style>
+
+            <Style x:Key="ProductInfoContainerStyle" TargetType="Layout">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="Margin" Value="12, 0" />
+            </Style>
+
+            <Style x:Key="ProductNameStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="MesaGrande" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+
+            <Style x:Key="UnitPriceStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid
+        HeightRequest="200">
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer  
+                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:CheckoutViewModel}}, Path=GoToDetailsCommand}"
+                CommandParameter="{Binding .}"/>
+        </Grid.GestureRecognizers>
+        <Grid
+            Rotation="{Binding ProductId, Converter={StaticResource ProductIdToRotationConverter}}"
+            Margin="24, 0">
+            <Border
+                Style="{StaticResource BasketItemContainerStyle}">
+                <Grid
+                    ColumnDefinitions="Auto, *, Auto">
+                    <Grid>
+                        <Ellipse
+                            Fill="{Binding ProductColor}"
+                            Style="{StaticResource BasketItemImageBackgroundStyle}"/>
+                    </Grid>
+                    <StackLayout
+                        Grid.Column="1"
+                        Style="{StaticResource ProductInfoContainerStyle}">
+                        <Label
+                            Text="{Binding ProductName}"
+                            Style="{StaticResource ProductNameStyle}"/>
+                        <Label
+                            Text="{Binding Path=UnitPrice, StringFormat='USD {0}'}"
+                            Style="{StaticResource UnitPriceStyle}"/>
+                    </StackLayout>
+                    <controls:NumericUpDown
+                        Grid.Column="2"/>
+                </Grid>
+            </Border>
+            <Grid 
+                ColumnDefinitions="120, *, Auto">
+                <Image 
+                    Source="{Binding ProductImage}"
+                    Style="{StaticResource ProductImageStyle}">
+                    <Image.Clip>
+                        <RoundRectangleGeometry 
+                            Rect="0, 0, 64, 150" 
+                            CornerRadius="26"/>
+                    </Image.Clip>
+                </Image>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentView>

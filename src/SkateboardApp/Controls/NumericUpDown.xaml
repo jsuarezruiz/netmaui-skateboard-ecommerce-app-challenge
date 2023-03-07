@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="SkateboardApp.Controls.NumericUpDown">
+    <ContentView.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="NumericUpDownStroke">#535872</Color>
+            
+            <Style x:Key="NumericUpDownContainerStyle" TargetType="Border">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="StrokeShape" Value="RoundRectangle 48" />
+                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="Stroke" Value="{StaticResource NumericUpDownStroke}" />
+                <Setter Property="StrokeDashArray" Value="1, 1" />
+                <Setter Property="StrokeDashOffset" Value="2" />
+                <Setter Property="HeightRequest" Value="80" />
+                <Setter Property="WidthRequest" Value="28" />
+            </Style>
+
+            <Color x:Key="NumericUpDownButtonBackground">#3DD3FE</Color>
+            
+            <Style x:Key="NumericUpDownButtonStyle" TargetType="Border">
+                <Setter Property="BackgroundColor" Value="{StaticResource NumericUpDownButtonBackground}" />
+                <Setter Property="StrokeShape" Value="Ellipse" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="HeightRequest" Value="20" />
+                <Setter Property="WidthRequest" Value="20" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            
+            <Style x:Key="NumericUpDownButtonTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Color x:Key="NumericUpDownValueContainerBackground">#010824</Color>
+            
+            <Style x:Key="NumericUpDownValueContainerStyle" TargetType="Border">
+                <Setter Property="BackgroundColor" Value="{StaticResource NumericUpDownValueContainerBackground}" />
+                <Setter Property="StrokeShape" Value="Ellipse" />
+                <Setter Property="StrokeThickness" Value="0" />
+                <Setter Property="HeightRequest" Value="20" />
+                <Setter Property="WidthRequest" Value="20" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="NumericUpDownValueTextStyle" TargetType="Label" BasedOn="{StaticResource NumericUpDownButtonTextStyle}">
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <Grid>
+        <Border
+            Style="{StaticResource NumericUpDownContainerStyle}">
+            <Grid
+                RowDefinitions="*,*,*">
+                <Border
+                    Style="{StaticResource NumericUpDownButtonStyle}">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer />
+                    </Border.GestureRecognizers>
+                    <Label 
+                        Text="+"
+                        Style="{StaticResource NumericUpDownButtonTextStyle}"/>
+                </Border>
+                <Border
+                    Grid.Row="1"
+                    Style="{StaticResource NumericUpDownValueContainerStyle}">
+                    <Label 
+                        Text="0"
+                        Style="{StaticResource NumericUpDownValueTextStyle}"/>
+                </Border>
+                <Border
+                    Grid.Row="2"
+                    Style="{StaticResource NumericUpDownButtonStyle}">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer />
+                    </Border.GestureRecognizers>
+                    <Label 
+                        Text="-"
+                        Style="{StaticResource NumericUpDownButtonTextStyle}"/>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentView>
