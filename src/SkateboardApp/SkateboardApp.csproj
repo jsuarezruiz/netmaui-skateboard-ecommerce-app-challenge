@@ -49,15 +49,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Fonts\Mesa-Grande.ttf" />
-	  <None Remove="Resources\Images\adidas_logo.png" />
-	  <None Remove="Resources\Images\back_icon.png" />
-	  <None Remove="Resources\Images\basket_icon.png" />
-	  <None Remove="Resources\Images\skate01.png" />
-	  <None Remove="Resources\Images\skate02.png" />
-	  <None Remove="Resources\Images\skate03.png" />
-	  <None Remove="Resources\Images\skate04.png" />
-	  <None Remove="Resources\Images\skate05.png" />
+		<None Remove="Resources\Fonts\Mesa-Grande.ttf" />
+		<None Remove="Resources\Images\adidas_logo.png" />
+		<None Remove="Resources\Images\back_icon.png" />
+		<None Remove="Resources\Images\basket_icon.png" />
+		<None Remove="Resources\Images\skate01.png" />
+		<None Remove="Resources\Images\skate02.png" />
+		<None Remove="Resources\Images\skate03.png" />
+		<None Remove="Resources\Images\skate04.png" />
+		<None Remove="Resources\Images\skate05.png" />
 	</ItemGroup>
 
 	<ItemGroup>
